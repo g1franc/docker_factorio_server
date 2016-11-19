@@ -36,7 +36,7 @@ then
   FACTORIO_SERVER_MAX_PLAYERS=0
 fi
 # Set Visibility default value if not set by user param
-if [ -z "$FACTORIO_SERVER_VISIBILITY_PUBLIC" == "true" ]
+if [ -z "$FACTORIO_SERVER_VISIBILITY_PUBLIC" ]
 then
   if [ -z "$FACTORIO_USER_USERNAME" ]
   then
@@ -52,11 +52,13 @@ then
     echo "###"
     echo "# Server Visibility is set to public but neither factorio.com Password is supplied!"
     echo "# Append: --env FACTORIO_USER_PASSWORD=[PASSWORD]"
-    echo "# Defaulting back to Server  Visibility Public: false"
+    echo "# Defaulting back to Server Visibility Public: false"
     echo "###"
     FACTORIO_SERVER_VISIBILITY_PUBLIC="false"
     fi
   fi
+else
+  FACTORIO_SERVER_VISIBILITY_PUBLIC="false"
 fi
 # Server password
 if [ -z "$FACTORIO_SERVER_GAME_PASSWORD" ]
@@ -144,9 +146,9 @@ sed -i "s/\"name\": \"[[:print:]]*\",/\"name\": \"$FACTORIO_SERVER_NAME\",/g" /o
 sed -i "s/\"description\": \"[[:print:]]*\",/\"description\": \"$FACTORIO_SERVER_DESCRIPTION\",/g" /opt/factorio/data/server-settings.json
 sed -i "s/\"max_players\": [[:digit:]]*,/\"max_players\": $FACTORIO_SERVER_MAX_PLAYERS,/g" /opt/factorio/data/server-settings.json
 sed -i "s/\"public\": true,/\"public\": $FACTORIO_SERVER_VISIBILITY_PUBLIC,/g" /opt/factorio/data/server-settings.json
-sed -i "s/\"username\": \"\",/\"username\": $FACTORIO_USER_USERNAME,/g" /opt/factorio/data/server-settings.json 
-sed -i "s/\"password"\": \"\",/\"password"\": $FACTORIO_USER_PASSWORD,/g" /opt/factorio/data/server-settings.json 
-sed -i "s/\"game_password\": \"[[:print:]]*\",/\"game_password\": $FACTORIO_SERVER_GAME_PASSWORD,/g" /opt/factorio/data/server-settings.json
+sed -i "s/\"username\": \"\",/\"username\": \"$FACTORIO_USER_USERNAME\",/g" /opt/factorio/data/server-settings.json 
+sed -i "s/\"password\": \"\",/\"password"\": \"$FACTORIO_USER_PASSWORD\",/g" /opt/factorio/data/server-settings.json 
+sed -i "s/\"game_password\": \"[[:print:]]*\",/\"game_password\": \"$FACTORIO_SERVER_GAME_PASSWORD\",/g" /opt/factorio/data/server-settings.json
 sed -i "s/\"require_user_verification\": true,/\"require_user_verification\": $FACTORIO_SERVER_VERIFY_IDENTITY,/g" /opt/factorio/data/server-settings.json
 sed -i "s/\"max_upload_in_kilobytes_per_second\": [[:digit:]]*,/\"max_upload_in_kilobytes_per_second\": $FACTORIO_SERVER_MAX_UPLOAD,/g" /opt/factorio/data/server-settings.json
 sed -i "s/\"minimum_latency_in_ticks\": [[:digit:]]*,/\"minimum_latency_in_ticks\": $FACTORIO_SERVER_MIN_LATENCY_TICK,/g" /opt/factorio/data/server-settings.json
