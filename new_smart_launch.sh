@@ -11,7 +11,7 @@ echo '   \  \:\      \  \:\        \  \:\/:/        \  \:\   \  \:\/:/     \  \:
 echo '    \  \:\      \  \:\        \  \::/          \__\/    \  \::/       \  \:\         \__\/      \  \::/   '
 echo '     \__\/       \__\/         \__\/                     \__\/         \__\/                     \__\/    '
 # Checking if server is ready 
-if [ $FACTORIO_WAITING == true ] 
+if [ "$FACTORIO_WAITING" == "true" ] 
 then 
   until [ -f /opt/factorio/saves/ready ] 
   do 
@@ -34,24 +34,24 @@ if [ "$FACTORIO_SERVER_NAME" ] \
 then
   factorio_command="$factorio_command --server-settings /opt/factorio/server-settings.json"
   # Set Server Name default value if not set by user param
-  if [ -z $FACTORIO_SERVER_NAME ]
+  if [ -z "$FACTORIO_SERVER_NAME" ]
   then
     FACTORIO_SERVER_NAME="Factorio Server $VERSION"
   fi
   # Set Visibility default value if not set by user param
-  if [ -z $FACTORIO_SERVER_VISIBILITY ]
+  if [ -z "$FACTORIO_SERVER_VISIBILITY" ]
   then
     FACTORIO_SERVER_VISIBILITY="hidden"
   fi
   # Set Verify User Identity default value if not set by user param
-  if [ -z $FACTORIO_SERVER_VERIFY_IDENTITY ]
+  if [ -z "$FACTORIO_SERVER_VERIFY_IDENTITY" ]
   then
     FACTORIO_SERVER_VERIFY_IDENTITY="false"
   fi
   # Check for supplied credentials if visibility is set to public
   if [ "$FACTORIO_SERVER_VISIBILITY" == "public" ]
   then
-    if [ -z $FACTORIO_USER_USERNAME ]
+    if [ -z "$FACTORIO_USER_USERNAME" ]
     then
       echo "###"
       echo "# Server Visibility is set to public but no factorio.com Username is supplied!"
@@ -63,7 +63,7 @@ then
     if [ "$FACTORIO_USER_USERNAME" ]
     then
 #      if [ -z $FACTORIO_USER_PASSWORD ] && [ -z $FACTORIO_USER_TOKEN ]
-      if [ -z $FACTORIO_USER_PASSWORD ]
+      if [ -z "$FACTORIO_USER_PASSWORD" ]
       then
       echo "###"
 #      echo "# Server Visibility is set to public but neither factorio.com Password or Token is supplied!"
@@ -100,7 +100,7 @@ cat << EOF > $SERVER_SETTINGS
 "game_password": "$FACTORIO_SERVER_GAME_PASSWORD",
 
 "_comment_verify_user_identity": "When set to true, the server will only allow clients that have a valid Factorio.com account",
-"verify_user_identity": $FACTORIO_SERVER_VERIFY_IDENTITY
+"verify_user_identity": "$FACTORIO_SERVER_VERIFY_IDENTITY"
 }
 EOF
 # Setting heavy mode option
@@ -127,7 +127,7 @@ factorio_command="$factorio_command --autosave-slots $FACTORIO_AUTOSAVE_SLOTS"
 # Setting rcon-port option
 factorio_command="$factorio_command --rcon-port 27015"
 # Setting rcon password option
-if [ -z $FACTORIO_RCON_PASSWORD ]
+if [ -z "$FACTORIO_RCON_PASSWORD" ]
 then
   FACTORIO_RCON_PASSWORD=$(cat /dev/urandom | tr -dc 'a-f0-9' | head -c16)
   echo "###"
@@ -163,7 +163,7 @@ fi
 cd /opt/factorio/saves
 # Handling save settings
 save_dir="/opt/factorio/saves"
-if [ -z $FACTORIO_SAVE ]
+if [ -z "$FACTORIO_SAVE" ]
 then
   if [ "$(ls -A $save_dir)" ]
   then
