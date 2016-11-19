@@ -9,10 +9,10 @@ script:
     if [ -z "$TRAVIS_TAG" ]; then
       TRAVIS_TAG="latest"
     fi
-    docker build -t "zopanix/factorio:${TRAVIS_TAG}" .
+    docker build -t "g1franc/factorio:${TRAVIS_TAG}" .
 deploy:
   provider: script
-  script: docker tag "zopanix/factorio:${TRAVIS_TAG}" "zopanix/factorio:latest" && docker push "zopanix/factorio:${TRAVIS_TAG}" && docker push "zopanix/factorio:latest"
+  script: docker tag "g1franc/factorio:${TRAVIS_TAG}" "g1franc/factorio:latest" && docker push "g1franc/factorio:${TRAVIS_TAG}" && docker push "g1franc/factorio:latest"
   skip_cleanup: false
   on:
     tags: true
