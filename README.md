@@ -1,10 +1,10 @@
-Factorio [![Build Status](https://travis-ci.org/zopanix/docker_factorio_server.svg?branch=master)](https://travis-ci.org/zopanix/docker_factorio_server)  [![Docker Pulls](https://img.shields.io/docker/pulls/zopanix/factorio.svg?maxAge=2592000)](https://hub.docker.com/r/zopanix/factorio/)
+Factorio [![Build Status](https://travis-ci.org/g1franc/docker_factorio_server.svg?branch=master)](https://travis-ci.org/g1franc/docker_factorio_server)  [![Docker Pulls](https://img.shields.io/docker/pulls/g1franc/factorio.svg?maxAge=2592000)](https://hub.docker.com/r/g1franc/factorio/)
 ===== 
 Factorio Server in docker
 
 Versions
 -----
-Please checkout the different [tags](https://hub.docker.com/r/zopanix/factorio/tags/)
+Please checkout the different [tags](https://hub.docker.com/r/g1franc/factorio/tags/)
 
 ### What's new ?
 #### Factorio
@@ -23,7 +23,7 @@ This runs factorio with default settings, and your save will be kept :
 docker run -d \
   -v [PATH]:/opt/factorio/saves \
   -p [PORT]:34197/udp \
-  zopanix/factorio
+  g1franc/factorio
 ```
 * Where [PATH] is a folder where you'll put your saves, if there already is a save in it with the string "save", that one will be taken by default, otherwize, a new one will be made.
 * Where [PORT] is the port number you choose, if you're going to launch it on your local machine, don't use the port 34197, take another one at random.
@@ -33,7 +33,7 @@ docker run -d \
 ```
 docker run -d \
   -p [PORT]:34197/udp \
-  zopanix/factorio
+  g1franc/factorio
 ```
 This will generate a new random map with default settings.
 
@@ -42,7 +42,7 @@ This will generate a new random map with default settings.
 docker run -d \
   -v [PATH]:/opt/factorio/saves \
   -p [PORT]:34197/udp \
-  zopanix/factorio
+  g1franc/factorio
 ```
 This will generate a new random map with default settings and save it onto the volume.
 Replace [PATH] with a path to a folder on the host where the map will be saved. If existing saves exist it will take the latest one.
@@ -53,7 +53,7 @@ You can set the autosave interval. By default it is set at 2 minutes bud you can
 docker run -d \
   --env FACTORIO_AUTOSAVE_INTERVAL=[NUMBER] \
   -p [PORT]:34197/udp  \
-  zopanix/factorio
+  g1franc/factorio
 ```
 Where [NUMBER] is the number of minutes between autosaves. 
 
@@ -63,7 +63,7 @@ You can set the number of autosave slots. By default it is set at 3 slots bud yo
 docker run -d \
   --env FACTORIO_AUTOSAVE_SLOTS=[NUMBER] \
   -p [PORT]:34197/udp  \
-  zopanix/factorio
+  g1franc/factorio
 ```
 Where [NUMBER] is the number of autosave slots.  
 
@@ -73,7 +73,7 @@ As everybody knows about factorio is you can add mods to it. Now you can also do
 docker run -d \
   -v [PATH]:/opt/factorio/mods \
   -p [PORT]:34197/udp \
-  zopanix/factorio
+  g1franc/factorio
 ```
 Where [PATH] is the path to the folder with your mods.
 
@@ -83,7 +83,7 @@ I've always disabled in-game commands because I think it is like cheating, howev
 docker run -d \
   --env FACTORIO_ALLOW_COMMANDS=true \
   -p [PORT]:34197/udp \
-  zopanix/factorio
+  g1franc/factorio
 ```
 
 #### Activating no-auto-pause in the game when no one is on the server
@@ -92,7 +92,7 @@ I do not recommend this feature, bud it can make the game more difficult if you'
 docker run -d \
   --env FACTORIO_NO_AUTO_PAUSE=true \
   -p [PORT]:34197/udp \
-  zopanix/factorio
+  g1franc/factorio
 ```
 
 #### Change latency option
@@ -101,7 +101,7 @@ I do not know what the real impact is, ut has always worked very well on default
 docker run -d \
   --env FACTORIO_LATENCY_MS=[number] \
   -p [PORT]:34197/udp \
-  zopanix/factorio
+  g1franc/factorio
 ```
 
 #### Factorio Mode
@@ -110,7 +110,7 @@ I don't know what it is, possibilities are : heavy, complete or none (don't do a
 docker run -d \
   --env FACTORIO_MODE=[MODE] \
   -p [PORT]:34197/udp \
-  zopanix/factorio
+  g1franc/factorio
 ```
 
 #### Factorio Server Name
@@ -119,7 +119,7 @@ Set Factorio Server Name (defaults to "Factorio Server")
 docker run -d \
   --env FACTORIO_SERVER_NAME=[NAME]
   -p [PORT]:34197/udp \
-  zopanix/factorio
+  g1franc/factorio
 ```
 
 #### Factorio Server Description
@@ -128,7 +128,7 @@ Set Factorio Server Description (if not specified, no description will be set)
 docker run -d \
   --env FACTORIO_SERVER_DESCRIPTION=[DESCRIPTION]
   -p [PORT]:34197/udp \
-  zopanix/factorio
+  g1franc/factorio
 ```
 
 #### Factorio Server Max Players
@@ -137,7 +137,7 @@ Set Factorio Server Max Players count (if not specified, maximum players is set 
 docker run -d \
   --env FACTORIO_SERVER_MAX_PLAYERS=[NUMBER]
   -p [PORT]:34197/udp \
-  zopanix/factorio
+  g1franc/factorio
 ```
 
 #### Factorio Server Visibility
@@ -147,7 +147,7 @@ Set Factorio Server Visibility (if set to public, factorio.com User Login and Pa
 docker run -d \
   --env FACTORIO_SERVER_VISIBILITY=[hidden,lan,public]
   -p [PORT]:34197/udp \
-  zopanix/factorio
+  g1franc/factorio
 ```
 
 #### Factorio Server factorio.com Login
@@ -159,7 +159,7 @@ docker run -d \
   --env FACTORIO_USER_USERNAME=[USERNAME]
   --env FACTORIO_USER_PASSWORD=[PASSWORD]
   -p [PORT]:34197/udp \
-  zopanix/factorio
+  g1franc/factorio
 ```
 
 #### Factorio Server Game Password
@@ -168,7 +168,7 @@ Set Factorio Server Game Password (if not specified, no password will be set)
 docker run -d \
   --env FACTORIO_SERVER_GAME_PASSWORD=[GAME-PASSWORD]
   -p [PORT]:34197/udp \
-  zopanix/factorio
+  g1franc/factorio
 ```
 
 #### Factorio Server Verify User Identity
@@ -177,7 +177,7 @@ Set Verify User Identity to true to require factorio.com account for user to log
 docker run -d \
   --env FACTORIO_SERVER_VERIFY_IDENTITY=[false,true]
   -p [PORT]:34197/udp \
-  zopanix/factorio
+  g1franc/factorio
 ```
 
 #### Factorio RCON Console Port
@@ -186,7 +186,7 @@ This allows you to expose a RCON Console
 docker run -d \
   -p [PORT]:34197/udp \
   -p [PORT_RCON]:27015/tcp \
-  zopanix/factorio
+  g1franc/factorio
 ```
 Where PORT_RCON is the port you want to use.
 By default a random password is set bud ... see below
@@ -197,7 +197,7 @@ This allows you to set a password for RCON (if not specified, it will be random)
 docker run -d \
   --env FACTORIO_RCON_PASSWORD=[PASSWORD] \
   -p [PORT]:34197/udp \
-  zopanix/factorio
+  g1franc/factorio
 ```
 
 #### Authorization Error
