@@ -1,6 +1,6 @@
 FROM frolvlad/alpine-glibc:alpine-3.3_glibc-2.23
 
-MAINTAINER zopanix <zopanix@gmail.com>
+MAINTAINER g1franc <guillaume.francois55@gmail.com>
 
 WORKDIR /opt
 
@@ -10,7 +10,7 @@ COPY ./factorio.crt /opt/
 VOLUME /opt/factorio/saves /opt/factorio/mods
 
 EXPOSE 34197/udp
-EXPOSE 27015/tcp
+#EXPOSE 27015/tcp
 
 CMD ["./new_smart_launch.sh"]
 
@@ -18,8 +18,8 @@ ENV FACTORIO_AUTOSAVE_INTERVAL=2 \
     FACTORIO_AUTOSAVE_SLOTS=3 \
     FACTORIO_ALLOW_COMMANDS=false \
     FACTORIO_NO_AUTO_PAUSE=false \
-    VERSION=0.14.20 \
-    FACTORIO_SHA1=d7c93754b543270aaa170aee01d8fd75fcc32c58 \
+    VERSION=0.14.21 \
+    FACTORIO_SHA1=fc11c0d5b2671e0cf36db7907de6ff617525ede3 \
     FACTORIO_WAITING=false \
     FACTORIO_MODE=normal \
     FACTORIO_SERVER_NAME= \
