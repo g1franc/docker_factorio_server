@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-glibc:alpine-3.6
+FROM frolvlad/alpine-glibc:alpine-3.7
 
 MAINTAINER g1franc <guillaume.francois55@gmail.com>
 
@@ -18,8 +18,8 @@ ENV FACTORIO_AUTOSAVE_INTERVAL=2 \
     FACTORIO_AUTOSAVE_SLOTS=3 \
     FACTORIO_ALLOW_COMMANDS=false \
     FACTORIO_NO_AUTO_PAUSE=false \
-    VERSION=0.16.17 \
-    FACTORIO_SHA1=d1bc9d0ae4395cec66cbfa9d1845a9db4ee5741d \
+    VERSION=0.16.18 \
+    FACTORIO_SHA1=add8b48f44a24d4ae474843f57b66cfc97749d3d \
     FACTORIO_WAITING=false \
     FACTORIO_MODE=normal \
     FACTORIO_SERVER_NAME= \
@@ -32,7 +32,7 @@ ENV FACTORIO_AUTOSAVE_INTERVAL=2 \
     FACTORIO_SERVER_GAME_PASSWORD= \
     FACTORIO_SERVER_VERIFY_IDENTITY=
 
-RUN apk --update add bash curl tar gzip xz && \
+RUN apk -U upgrade && apk --update add bash curl tar gzip xz libssl1.0 && \
     curl -sSL --cacert /opt/factorio.crt "https://www.factorio.com/get-download/${VERSION}/headless/linux64" -o /tmp/factorio_headless_x64_${VERSION}.tar.xz && \
     echo "$FACTORIO_SHA1  /tmp/factorio_headless_x64_${VERSION}.tar.xz" | sha1sum -c && \
     tar xf /tmp/factorio_headless_x64_${VERSION}.tar.xz && \
