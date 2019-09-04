@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-glibc:alpine-3.9_glibc-2.28
+FROM frolvlad/alpine-glibc:alpine-3.10_glibc-2.29
 
 MAINTAINER g1franc <guillaume.francois55@gmail.com>
 
@@ -18,8 +18,8 @@ ENV FACTORIO_AUTOSAVE_INTERVAL=2 \
     FACTORIO_AUTOSAVE_SLOTS=3 \
     FACTORIO_ALLOW_COMMANDS=false \
     FACTORIO_NO_AUTO_PAUSE=false \
-    VERSION=0.17.66 \
-    FACTORIO_SHA1=b99753945ec944a8ad8c9d5d2135830517e10bd8 \
+    VERSION=0.17.67 \
+    FACTORIO_SHA1=e23c4be62d1715c57fa3a6a97bc443c7af0f9af1 \
     FACTORIO_WAITING=false \
     FACTORIO_MODE=normal \
     FACTORIO_SERVER_NAME= \
