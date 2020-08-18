@@ -1,18 +1,18 @@
-FROM frolvlad/alpine-glibc:alpine-3.10_glibc-2.29
+FROM frolvlad/alpine-glibc:alpine-3.12_glibc-2.32
 
 MAINTAINER g1franc <guillaume.francois55@gmail.com>
 
 WORKDIR /opt
 
-COPY ./new_smart_launch.sh /opt/
+COPY ./configure_and_launch.sh /opt/
 COPY ./factorio.crt /opt/
 
 VOLUME /opt/factorio/saves /opt/factorio/mods
 
 EXPOSE 34197/udp
-#EXPOSE 27015/tcp
+EXPOSE 27015/tcp
 
-CMD ["./new_smart_launch.sh"]
+CMD ["./configure_and_launch.sh"]
 
 ENV FACTORIO_AUTOSAVE_INTERVAL=2 \
     FACTORIO_AUTOSAVE_SLOTS=3 \
@@ -28,7 +28,7 @@ ENV FACTORIO_AUTOSAVE_INTERVAL=2 \
     FACTORIO_SERVER_VISIBILITY= \
     FACTORIO_USER_USERNAME= \
     FACTORIO_USER_PASSWORD= \
-#    FACTORIO_USER_TOKEN= \
+    FACTORIO_USER_TOKEN= \
     FACTORIO_SERVER_GAME_PASSWORD= \
     FACTORIO_SERVER_VERIFY_IDENTITY=
 
