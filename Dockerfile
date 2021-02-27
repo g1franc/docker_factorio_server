@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-glibc:alpine-3.12_glibc-2.32
+FROM frolvlad/alpine-glibc:glibc-2.33
 
 MAINTAINER g1franc <guillaume.francois55@gmail.com>
 
